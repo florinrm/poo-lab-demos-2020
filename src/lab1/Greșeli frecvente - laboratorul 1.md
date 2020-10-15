@@ -170,18 +170,18 @@ Exemplu:
 ```java
 // noi vrem sa cream un array, in care sa bagam doi studenti
 
-Student[] students = new Student[100]; // gresit, aici trebuia 2 in loc de 100
+Student[] students = new Student[100]; // gresit, aici trebuia 2 in loc de 100, alocam cat este nevoie
 Student st = new Student();
 st.setName("Decebal");
 st.setId(420);
-arr[0] = st;
+students[0] = st;
 
-arr[1] = new Student();
-arr[1].setName("Mirona");
-arr[1].setId(489);
+students[1] = new Student();
+students[1].setName("Mirona");
+students[1].setId(489);
 
 for (int i = 0; i < students.length; i++) {
-	System.out.println(arr[i].getName()); // la i = 2 o sa crape codul, se va arunca NullPointerException
+	System.out.println(students[i].getName()); // la i = 2 o sa crape codul, se va arunca NullPointerException
 }
 ```
 - așa da:
@@ -192,14 +192,14 @@ Student[] students = new Student[2]; // acum e corect
 Student st = new Student();
 st.setName("Decebal");
 st.setId(420);
-arr[0] = st;
+students[0] = st;
 
-arr[1] = new Student();
-arr[1].setName("Mirona");
-arr[1].setId(489);
+students[1] = new Student();
+students[1].setName("Mirona");
+students[1].setId(489);
 
 for (int i = 0; i < students.length; i++) {
-	System.out.println(arr[i].getName()); // la i = 2 o sa crape codul, se va arunca NullPointerException
+	System.out.println(students[i].getName());
 }
 ```
 

@@ -24,15 +24,15 @@ public class Main {
 
         // arrays
         int[] arr = new int[10];
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = i * 2;
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
 
         Song[] songs = new Song[3];
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < songs.length; i++) {
             songs[i] = new Song();
         }
 
@@ -48,4 +48,5 @@ public class Main {
         songs[2].setYear(2018);
         songs[2].setArtist("Juice WRLD");
     }
+
 }
