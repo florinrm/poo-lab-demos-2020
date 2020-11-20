@@ -2,13 +2,15 @@ package lab4;
 
 public class Main {
     public static void main(String[] args) {
-        String str = "apare in weekend tema la POO";
-        String str2 = str.substring(0, str.length() - 1);
-        String str3 = str.substring(0, str.length() - 7) + str.substring(str.length() - 6);
-        System.out.println(str2);
-        System.out.println(str3);
+        String str = "in weekend apare tema la poo :(";
+        str = "tema este usoara, no worries :)";
 
-        String result = StringUtils.repeatString(str, 10);
-        System.out.println(result);
+        str = "p" + str.substring(1);
+        StringBuilder stringBuilder = new StringBuilder(str);
+        stringBuilder.setCharAt(4, 'h');
+        str = stringBuilder.toString();
+        System.out.println(str);
+
+        System.out.println(Utils.repeatString(str, 4));
     }
 }
