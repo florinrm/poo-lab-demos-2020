@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
+interface InnerInterface {
+
+}
+
 class Outer {
     private int x; // membru al clasei
 
@@ -16,7 +20,7 @@ class Outer {
         return x;
     }
 
-    public class InnerClass {
+    public class InnerClass implements InnerInterface {
         private int x, y;
 
         public InnerClass(int x, int y) {
@@ -41,6 +45,10 @@ class Outer {
         }
     }
 
+    public InnerInterface getInnerInstace(int x, int y) {
+        return new InnerClass(x, y);
+    }
+
     // daca clasa interna are modificatorul private, ne folosim de un getter (clasic, ca inainte cu membrii privati)
     public InnerClass getInstance (int x, int y) {
         return new InnerClass(x, y);
@@ -51,7 +59,7 @@ class Outer {
 
         public StaticInnerClass(int x, int y) {
             this.x = x; // aici nu merge cu Outer.this.x
-            //Outer.this.x = x;
+            // Outer.this.x = x;
             // decomentand linia de mai sus, vom avea eroarea "non-static variable this cannot be referenced from a static context"
             System.out.println("Inner static:" + this.x);
             this.y = y;
@@ -102,7 +110,7 @@ class Outer {
             }
         }
 
-        Student first = new Student ("Bogdanel", "Poponel");
+        Student first = new Student ("Bogdanel", "Bombonel");
         Student second = new Student ("Malonel", "Frumushel");
         System.out.println(first);
         System.out.println(second);
@@ -140,6 +148,8 @@ public class Main {
         System.out.println("Inner y: " + in2.getInnerY());
         System.out.println("Just x in inner class: " + in2.getX());
 
+        Outer.InnerInterface obj = out.getInnerInstace(10, 20);
+
         Outer.StaticInnerClass in3 = new Outer.StaticInnerClass(69, 69);
         System.out.println("Static inner x: " + in3.getInnerX());
         System.out.println("Static inner y: " + in3.getInnerY());
@@ -149,11 +159,11 @@ public class Main {
         Outer.InnerInterface in4 = out.getPrivateInnerClassInstance();
         System.out.println(in4.getClass());
 
-        // cream o clasa anonima prin extinderea clasei Vector, in care suprascriem metoda add
+        // cream o clasa anonima prin extinderea clasei ArrayList, in care suprascriem metoda add
         // pentru a face astfel incat sa se adauge doar numere pare
-        ArrayList<Integer> vect = new ArrayList<Integer>() {
+        ArrayList<Integer> vect = new ArrayList<>() {
             @Override
-            public boolean add (Integer e) {
+            public boolean add(Integer e) {
                 if (e % 2 == 0)
                     return super.add(e);
                 return false;
@@ -167,18 +177,14 @@ public class Main {
         // vrem sa sortam vect in ordine descrescatoare
         // astfel cream o clasa anonima care implementeaza Comparator -> criteriu de comparare la sortare
         // Collection.sort primeste ca parametru un obiect de tip Comparator
-        Collections.sort(vect, new Comparator<Integer>(){
-            @Override
-            public int compare (Integer e1, Integer e2) {
-                return e2 - e1;
-            }
-        }); // clasa anonima implementeaza interfata Comparator in acest caz
+        Collections.sort(vect, (e1, e2) -> e2 - e1); // clasa anonima implementeaza interfata Comparator in acest caz
         // pe scurt, clasele anonime sunt mostenire in forma minimalista
 
         System.out.println(vect);
 
         // functii lambda
         LambdaInterface lambda1 = (int x, int y) -> x + y;
+        LambdaInterface lambda3 = Integer::sum;
         LambdaInterface lambda2 = (int x, int y) -> {
             System.out.println("x = " + x);
             System.out.println("y = " + y);
@@ -187,7 +193,7 @@ public class Main {
         System.out.println(lambda1.add(6, 9));
         System.out.println(lambda2.add(6, 9));
 
-        AnotherLambdaInterface lambda3 = () -> System.out.println("PP RULLZ");
-        lambda3.doStuff();
+        AnotherLambdaInterface lambda4 = () -> System.out.println("PP RULLZ");
+        lambda4.doStuff();
     }
 }

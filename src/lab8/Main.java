@@ -44,15 +44,13 @@ public class Main {
         list.add(10);
         System.out.println(list.get(0));
 
+        list.replaceAll((x) -> x + 1);
+        list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+
         Collections.sort(list);
         System.out.println(list);
 
-        Collections.sort(list, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        list.sort((o1, o2) -> o2 - o1);
         System.out.println(list);
 
         // compare
@@ -64,7 +62,10 @@ public class Main {
         System.out.println(students);
         Collections.sort(students);
         System.out.println(students);
-        Collections.sort(students, new Comparator<Student>() {
+
+        TreeMap<Integer, Integer> sortedSet = new TreeMap<>(Comparator.comparingInt(o -> o));
+
+        students.sort(new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
                 if (o1.getName().equals(o2.getName())) {
